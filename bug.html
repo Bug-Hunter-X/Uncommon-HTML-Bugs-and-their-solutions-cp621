@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Uncommon HTML Bug</title>
+</head>
+<body>
+  <div id="myDiv">
+    This is some text.
+  </div>
+
+  <script>
+    //Attempting to access a non-existent attribute
+    let text = document.getElementById("myDiv").getAttribute("data-nonexistent");
+    console.log(text); //Outputs null, but may cause unexpected behavior in some scenarios
+
+    // Incorrect use of innerHTML leading to XSS vulnerability
+    let userInput = prompt("Enter some text:");
+    document.getElementById("myDiv").innerHTML = userInput;
+
+    //Overwriting existing elements in the DOM unintentionally
+    let newDiv = document.createElement("div");
+    newDiv.innerHTML = "This is a new div";
+    document.body.appendChild(newDiv); //Adds new div to body
+    document.getElementById("myDiv").appendChild(newDiv); // Adds the *same* new div to myDiv. This leads to the new div being in two places
+  </script>
+</body>
+</html>
