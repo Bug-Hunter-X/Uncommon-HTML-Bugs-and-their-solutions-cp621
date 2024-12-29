@@ -1,0 +1,1 @@
+This repository contains examples of three uncommon bugs that can occur in HTML and their corresponding solutions.  The bugs demonstrated are subtle and can be difficult to track down without careful attention to detail.  Understanding these edge cases will help you avoid unexpected behavior and security vulnerabilities in your web applications.
