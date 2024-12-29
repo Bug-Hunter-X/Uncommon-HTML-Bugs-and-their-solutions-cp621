@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Uncommon HTML Bug Solutions</title>
+</head>
+<body>
+  <div id="myDiv">
+    This is some text.
+  </div>
+
+  <script>
+    //Solution 1: Check for attribute existence before access
+    let div = document.getElementById("myDiv");
+    let text = div.hasAttribute("data-nonexistent") ? div.getAttribute("data-nonexistent") : null; 
+    console.log(text); //Outputs null safely
+
+    //Solution 2: Use textContent instead of innerHTML to prevent XSS
+    let userInput = prompt("Enter some text:");
+    let p = document.createElement("p");
+    p.textContent = userInput; //Avoid XSS vulnerability
+    document.getElementById("myDiv").appendChild(p);
+
+    //Solution 3: Clone elements to avoid accidental overwriting
+    let newDiv = document.createElement("div");
+    newDiv.innerHTML = "This is a new div";
+    document.body.appendChild(newDiv.cloneNode(true));
+    document.getElementById("myDiv").appendChild(newDiv.cloneNode(true)); //Adds a copy of the new div
+  </script>
+</body>
+</html>
